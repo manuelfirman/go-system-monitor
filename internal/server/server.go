@@ -31,6 +31,7 @@ func NewServer() *Default {
 	}
 
 	server.Mux.Handle("/", http.FileServer(http.Dir("./htmx")))
+	server.Mux.HandleFunc("/subscribe", server.SubscribeHandler)
 
 	return server
 }
@@ -62,7 +63,7 @@ func (s *Default) Subscribe(ctx context.Context, w http.ResponseWriter, r *http.
 
 	c, err := websocket.Accept(w, r, nil)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to accept websocket: %w", err)
 	}
 	defer c.CloseNow()
 

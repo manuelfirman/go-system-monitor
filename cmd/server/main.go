@@ -9,7 +9,7 @@ func main() {
 	server := server.NewServer()
 	application := application.NewApplicationDefault(server)
 
-	go application.Run()
+	go application.Run(1)
 
 	err := application.Listen()
 	if err != nil {
