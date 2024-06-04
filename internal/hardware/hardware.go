@@ -9,10 +9,13 @@ var (
 
 // SystemSection is the structure for the system section.
 type SystemSection struct {
-	RuntimeOS string
-	TotalVM   uint64
-	UsedVM    uint64
-	Host      string
+	RuntimeOS            string
+	Hostname             string
+	Platform             string
+	Procs                uint64
+	TotalVM              uint64
+	FreeVM               uint64
+	PercentageMemoryUsed float64
 }
 
 // CPUSection is the structure for the CPU section.

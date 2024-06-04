@@ -26,14 +26,17 @@ func GetSystemSection() (s SystemSection, err error) {
 		return
 	}
 	s.TotalVM = vmStats.Total / megabyteDiv
-	s.UsedVM = vmStats.Used / megabyteDiv
+	s.FreeVM = vmStats.Free / megabyteDiv
+	s.PercentageMemoryUsed = vmStats.UsedPercent
 
 	// Get the host info.
 	hostInfo, err := host.Info()
 	if err != nil {
 		return
 	}
-	s.Host = hostInfo.Hostname
+	s.Hostname = hostInfo.Hostname
+	s.Platform = hostInfo.Platform
+	s.Procs = hostInfo.Procs
 
 	return
 }
